@@ -3,9 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
-/* * {
-  background-color: #1f242d;
-} */
+/* Hide the scrollbar but allow scrolling */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+}
 
 .inter {
   font-family: "Inter", sans-serif;
@@ -27,4 +33,10 @@
   100% {
     transform: translateY(0);
   }
+}
+
+.Icontext {
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 15px white,
+    0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.6),
+    0 0 40px rgba(255, 255, 255, 0.4);
 }

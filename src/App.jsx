@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Home from "./Components/Home";
+import Techstack from "./Components/Techstack";
 import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
   return (
-    <section>
+    <section className="h-screen overflow-auto hide-scrollbar">
       <Home></Home>
+      <Techstack></Techstack>
     </section>
   );
 }
