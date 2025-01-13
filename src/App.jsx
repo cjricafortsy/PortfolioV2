@@ -6,7 +6,7 @@ import "./App.css";
 function App() {
   const [count, setCount] = useState(0);
   return (
-    <section className="h-screen overflow-auto hide-scrollbar">
+    <section className="h-screen overflow-auto hide-scrollbar scroll-smooth">
       <Home></Home>
       <Techstack></Techstack>
     </section>
