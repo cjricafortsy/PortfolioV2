@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Home from "./Components/Home";
 import Techstack from "./Components/Techstack";
+import Projects from "./Components/Projects";
 import "./App.css";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <section className="h-screen overflow-auto hide-scrollbar scroll-smooth">
       <Home></Home>
       <Techstack></Techstack>
+      <Projects></Projects>
     </section>
   );
 }
