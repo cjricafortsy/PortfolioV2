@@ -2,6 +2,7 @@ import { useState } from "react";
 import Home from "./Components/Home";
 import Techstack from "./Components/Techstack";
 import Projects from "./Components/Projects";
+// import Spline from "./Components/Spline";
 import "./App.css";
 
 function App() {
