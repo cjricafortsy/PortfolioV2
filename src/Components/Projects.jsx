@@ -1,110 +1,80 @@
 import React, { useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css"; // Import the Swiper styles
 import iHubImage from "../assets/iHub.png";
 import outlandImage from "../assets/Outland.png";
 import bteWebImage from "../assets/BTEWeb.png";
 import btePortalImage from "../assets/BTEPortal.png";
+import prWebVideo from "../assets/PRwebsite.gif";
 
-// Main Project Component with Swipeable Cards
+// Image data array
+const projects = [
+  {
+    id: 1,
+    title: "Outland",
+    image: outlandImage,
+    description:
+      "Outland is an exhilarating survival game crafted by our team as part of our Capstone project at STI.",
+  },
+  {
+    id: 2,
+    title: "iHub",
+    image: iHubImage,
+    description:
+      "During our OJT at Mnleistung, we proudly developed Ihub, also known as Intern Hub, an innovative internship management platform.",
+  },
+  {
+    id: 3,
+    title: "Bigtime Empire Corp. Website",
+    image: bteWebImage,
+    description:
+      "Bigtime Empiroce Corp’s website features its food and beverage brands, with job applications and franchising opportunities.",
+  },
+  {
+    id: 4,
+    title: "BTE Portal",
+    image: btePortalImage,
+    description:
+      "The Bigtime Empire Corp Portal (BTE Portal) is an HRIS designed for employees to easily access and manage company-related information.",
+  },
+  {
+    id: 5,
+    title: "Pares Retiro Website",
+    image: prWebVideo,
+    description:
+      "Pares Retiro is a Bigtime Empire Corp-owned brand that specializes in Filipino dish 'Pares' and other delicious offerings.",
+  },
+];
+
 const Project = () => {
-  // Reference for Swiper instance
   const swiperRef = useRef(null);
 
   return (
-    <div className="py-[5rem] w-full bg-bgcolor">
-      {/* Title at the top */}
-      <h1 className="text-center text-white text-[3.5rem] font-bold mb-8">
+    <div className="bg-bgcolor w-full pb-[4rem]">
+      <h1 className="text-center text-white xl:text-[4rem] md:text-[3rem] text-[2rem] mb-[5rem] font-bold">
         MY <span className="text-textcolor">PROJECTS</span>
       </h1>
 
-      <Swiper
-        ref={swiperRef} // Reference to control the Swiper instance
-        spaceBetween={1} // Space between slides
-        slidesPerView={1} // Show one card at a time
-        loop={true} // Enable looping for continuous swipe
-        pagination={{ clickable: true }} // Pagination dots
-        autoplay={{
-          delay: 1000, // Delay between slides (5 seconds)
-          disableOnInteraction: false, // Continue autoplay after user interaction
-        }} // Autoplay configuration
-        className="swiper-container"
-      >
-        {/* First SwiperSlide */}
-        <SwiperSlide>
-          <div className="w-full mx-auto rounded-lg overflow-hidden shadow-lg bg-white max-w-[80rem] max-h-[50rem]">
-            <img className="w-full object-cover" src={iHubImage} alt="iHub" />
-            <div className="px-6 py-4">
-              <h3 className="text-2xl font-semibold text-gray-800">iHub</h3>
-              <p className="text-gray-600 text-sm mt-2">
-                During our OJT at Mnleistung, we proudly developed Ihub, also
-                known as Intern Hub, an innovative internship management
-                platform.
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        {/* Second SwiperSlide */}
-        <SwiperSlide>
-          <div className="w-full mx-auto rounded-lg overflow-hidden shadow-lg bg-white max-w-[80rem] max-h-[50rem]">
+      <div className="flex flex-wrap justify-center gap-6 w-full mx-auto">
+        {projects.map((project) => (
+          <div
+            key={project.id}
+            className="xl:w-auto md:w-[20rem] w-[20rem] rounded-xl overflow-hidden shadow-md relative group"
+          >
             <img
-              className="w-full object-cover"
-              src={outlandImage}
-              alt="Outland"
+              className="xl:w-full xl:h-[18rem] group-hover:scale-110 transition-transform duration-500 object-cover"
+              src={project.image}
+              alt={project.title}
             />
-            <div className="px-6 py-4">
-              <h3 className="text-2xl font-semibold text-gray-800">Outland</h3>
-              <p className="text-gray-600 text-sm mt-2">
-                Outland is an exhilarating survival game crafted by our team as
-                part of our Capstone project at STI.
-              </p>
+            {/* Curtain effect overlay */}
+            <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-textcolor to-transparent group-hover:translate-y-0 translate-y-full transition-all duration-500 ease-in-out flex justify-center items-center p-4">
+              <div className="text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
+                <h2 className="text-xl font-bold">{project.title}</h2>
+                <p className="mt-2">{project.description}</p>
+              </div>
             </div>
           </div>
-        </SwiperSlide>
-
-        {/* Additional slides */}
-        <SwiperSlide>
-          <div className="w-full mx-auto rounded-lg overflow-hidden shadow-lg bg-white max-w-[80rem] max-h-[50rem]">
-            <img
-              className="w-full object-cover"
-              src={bteWebImage}
-              alt="BTE Web"
-            />
-            <div className="px-6 py-4">
-              <h3 className="text-2xl font-semibold text-gray-800">
-                Bigtime Empire Corp. Website
-              </h3>
-              <p className="text-gray-600 text-sm mt-2">
-                BigTime Empire Corp's website design showcases the diverse
-                portfolio of brands managed by the company, highlighting their
-                innovation, quality, and impact across various industries.
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className="w-full mx-auto rounded-lg overflow-hidden shadow-lg bg-white max-w-[80rem] max-h-[50rem]">
-            <img
-              className="w-full object-cover"
-              src={btePortalImage}
-              alt="BTE Portal"
-            />
-            <div className="px-6 py-4">
-              <h3 className="text-2xl font-semibold text-gray-800">
-                Bigtime Empire Corp. Portal
-              </h3>
-              <p className="text-gray-600 text-sm mt-2">
-                BigTime Portal is a comprehensive platform that houses the
-                Employee Information Management System (EIMS) for securely
-                storing and managing employee data at BigTime Empire Corp, with
-                an evolving HRIS module currently under development.
-              </p>
-            </div>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+        ))}
+      </div>
     </div>
   );
 };
