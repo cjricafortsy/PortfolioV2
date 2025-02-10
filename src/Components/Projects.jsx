@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import "swiper/swiper-bundle.css"; // Import the Swiper styles
 import iHubImage from "../assets/iHub.png";
 import outlandImage from "../assets/Outland.png";
 import bteWebImage from "../assets/BTEWeb.png";
@@ -46,10 +45,8 @@ const projects = [
 ];
 
 const Project = () => {
-  const swiperRef = useRef(null);
-
   return (
-    <div className="bg-bgcolor w-full pb-[4rem]">
+    <div className="bg-bgcolor w-full">
       <h1 className="text-center text-white xl:text-[4rem] md:text-[3rem] text-[2rem] mb-[5rem] font-bold">
         MY <span className="text-textcolor">PROJECTS</span>
       </h1>
@@ -68,8 +65,12 @@ const Project = () => {
             {/* Curtain effect overlay */}
             <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-textcolor to-transparent group-hover:translate-y-0 translate-y-full transition-all duration-500 ease-in-out flex justify-center items-center p-4">
               <div className="text-center text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-                <h2 className="text-xl font-bold">{project.title}</h2>
-                <p className="mt-2">{project.description}</p>
+                <h2 className="xl:text-[2rem] text-[1.2rem] font-bold">
+                  {project.title}
+                </h2>
+                <p className="xl:text-[1.2rem] text-sm mt-2">
+                  {project.description}
+                </p>
               </div>
             </div>
           </div>

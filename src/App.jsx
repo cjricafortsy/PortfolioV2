@@ -2,7 +2,7 @@ import { useState } from "react";
 import Home from "./Components/Home";
 import Techstack from "./Components/Techstack";
 import Projects from "./Components/Projects";
-// import Spline from "./Components/Spline";
+import Contact from "./Components/Contact";
 import "./App.css";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
       <Home></Home>
       <Techstack></Techstack>
       <Projects></Projects>
+      <Contact></Contact>
     </section>
   );
 }
