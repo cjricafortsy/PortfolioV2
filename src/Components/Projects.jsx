@@ -4,6 +4,7 @@ import outlandImage from "../assets/Outland.png";
 import bteWebImage from "../assets/BTEWeb.png";
 import btePortalImage from "../assets/BTEPortal.png";
 import prWebVideo from "../assets/PRwebsite.gif";
+import HRIS from "../assets/HRIS.png";
 
 // Image data array
 const projects = [
@@ -42,6 +43,13 @@ const projects = [
     description:
       "Pares Retiro is a Bigtime Empire Corp-owned brand that specializes in Filipino dish 'Pares' and other delicious offerings.",
   },
+  {
+    id: 6,
+    title: "HRIS",
+    image: HRIS,
+    description:
+      "From BTE Portal to HRIS new UI and has Payroll Fucntions "
+  },
 ];
 
 const Project = () => {
@@ -55,7 +63,7 @@ const Project = () => {
         {projects.map((project) => (
           <div
             key={project.id}
-            className="xl:w-auto md:w-[20rem] w-[20rem] rounded-xl overflow-hidden shadow-md relative group"
+            className="xl:w-auto md:w-[20rem] w-[20rem] rounded-xl overflow-hidden shadow-md relative group hover:scale-105 transistion-transform duration-300"
           >
             <img
               className="xl:w-full xl:h-[18rem] group-hover:scale-110 transition-transform duration-500 object-cover"

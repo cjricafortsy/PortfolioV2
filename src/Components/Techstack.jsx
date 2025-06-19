@@ -1,17 +1,20 @@
 import React from "react";
-import { FaHtml5 } from "react-icons/fa";
-import { FaCss3 } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import {
+  FaHtml5,
+  FaCss3,
+  FaBootstrap,
+  FaReact,
+  FaFigma,
+} from "react-icons/fa";
 import { IoLogoJavascript } from "react-icons/io";
-import { FaBootstrap } from "react-icons/fa";
-import { FaReact } from "react-icons/fa";
 import { RiTailwindCssFill } from "react-icons/ri";
-import { PiFileSql } from "react-icons/pi";
+import { PiFileSql, PiFileCSharp } from "react-icons/pi";
 import { SiExcalidraw } from "react-icons/si";
-import { FaFigma } from "react-icons/fa";
-import { PiFileCSharp } from "react-icons/pi";
 import { AiOutlineDotNet } from "react-icons/ai";
 
-function techstack() {
+function TechStack() {
   const Icon = [
     { id: 1, icon: <FaFigma />, name: "Figma" },
     { id: 2, icon: <FaHtml5 />, name: "HTML 5" },
@@ -25,26 +28,52 @@ function techstack() {
     { id: 10, icon: <PiFileCSharp />, name: "C#" },
     { id: 11, icon: <AiOutlineDotNet />, name: "ASP.Net" },
   ];
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 50, scale: 0.8 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        delay: i * 0.2,
+        duration: 0.8,
+        ease: "easeOut",
+      },
+    }),
+  };
+
+  const [sectionRef, sectionInView] = useInView({
+    triggerOnce: false,
+    threshold: 0.2,
+  });
+
   return (
-    <div className="flex justify-center items-center bg-bgcolor py-32">
+    <div
+      ref={sectionRef}
+      className="flex justify-center items-center bg-bgcolor py-32"
+    >
       <div className="flex flex-col justify-center items-center lg:max-w-[1240px] 2xl:max-w-[1600px] mx-auto my-[8rem]">
         <h1 className="text-white xl:text-[3.5rem] lg:text-[3rem] md:text-[3rem] text-[1.5rem] font-bold">
           TECHNOLOGY <span className="text-textcolor">STACK</span>
         </h1>
         <div className="flex flex-wrap items-center justify-evenly mt-32 max-w-[90rem] lg:gap-[10rem] md:gap-[8rem] gap-[3rem] md:mx-16 mx-4">
-          {Icon.map((index) => (
-            <div
-              id={index.id}
+          {Icon.map((item, index) => (
+            <motion.div
+              key={item.id}
+              custom={index}
+              initial="hidden"
+              animate={sectionInView ? "visible" : "hidden"}
+              variants={itemVariants}
               className="flex flex-col justify-center items-center"
-              key={index.id}
             >
               <span className="Techicon xl:text-[6rem] lg:text-[5rem] md:text-[4rem] text-[2rem] text-white">
-                {index.icon}
+                {item.icon}
               </span>
               <span className="Icontext md:text-[1.5rem] text-[1rem] text-white mt-5">
-                {index.name}
+                {item.name}
               </span>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -52,4 +81,4 @@ function techstack() {
   );
 }
 
-export default techstack;
+export default TechStack;
