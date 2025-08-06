@@ -1,69 +1,93 @@
-import React from "react";
+import React, { useRef } from "react";
+import emailjs from "emailjs-com";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const contact = () => {
+const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_698jtmh", // Your EmailJS service ID
+        "template_nol23ge", // Your EmailJS template ID
+        form.current,
+        "A2sqxU8rPwDuGv2Sp" // Your EmailJS public key
+      )
+      .then(
+        () => {
+          toast.success("Message sent successfully! Please check your email for confirmation.");
+          form.current.reset();
+        },
+        (error) => {
+          toast.error("Failed to send message. Please try again.");
+          console.error("EmailJS error:", error.text);
+        }
+      );
+  };
+
   return (
-    <div className="bg-bgcolor w-full">
-      <div className="pt-[20rem] pb-20">
-        <h1 className="text-center text-white xl:text-[4rem] md:text-[3rem] text-[2rem] mb-[5rem] font-bold">
-          CONTACT <span className="text-textcolor">ME</span>
-        </h1>
+    <div className="bg-bgcolor w-full py-40">
+      <ToastContainer position="top-center" autoClose={3000} />
 
-        <form className="max-w-6xl mx-auto text-center px-5 pb-[5rem]">
-          <div className="flex flex-wrap justify-between">
-            <div className="w-full sm:w-1/2 p-2">
-              <input
-                type="text"
-                placeholder="Full Name"
-                id="name"
-                className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg my-2 focus:outline-none"
-              />
-            </div>
-            <div className="w-full sm:w-1/2 p-2">
-              <input
-                type="email"
-                placeholder="Email Address"
-                id="email"
-                className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg my-2 focus:border-bg-textcolor focus:outline-none"
-              />
-            </div>
-          </div>
-          <div className="flex flex-wrap justify-between">
-            <div className="w-full sm:w-1/2 p-2">
-              <input
-                type="text"
-                placeholder="Mobile Number"
-                id="num"
-                className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg my-2 focus:border-bg-textcolor focus:outline-none"
-              />
-            </div>
-            <div className="w-full sm:w-1/2 p-2">
-              <input
-                type="text"
-                placeholder="Subject"
-                id="subj"
-                className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg my-2 focus:border-bg-textcolor focus:outline-none"
-              />
-            </div>
-          </div>
-          <textarea
-            id="message"
-            cols="30"
-            rows="10"
-            placeholder="Your Message"
-            className="xl:w-[98.6%] md:w-[98%] p-6 text-xl bg-[#323946] text-white rounded-lg my-2 focus:border-bg-textcolor focus:outline-none"
-          ></textarea>
+      <h1 className="text-center text-white font-bold text-[2rem] md:text-[3rem] xl:text-[4rem] mb-20">
+        CONTACT <span className="text-textcolor">ME</span>
+      </h1>
+
+      <form ref={form} onSubmit={sendEmail} className="max-w-6xl mx-auto px-5 grid gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="name"
+            placeholder="Full Name"
+            required
+            className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg focus:outline-none"
+          />
+          <input
+            type="email"
+            name="email"
+            placeholder="Email Address"
+            required
+            className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg focus:outline-none"
+          />
+          <input
+            type="text"
+            name="phone"
+            placeholder="Mobile Number"
+            required
+            className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg focus:outline-none"
+          />
+          <input
+            type="text"
+            name="subject"
+            placeholder="Subject"
+            required
+            className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg focus:outline-none"
+          />
+        </div>
+
+        <textarea
+          name="message"
+          rows="6"
+          placeholder="Your Message"
+          required
+          className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg focus:outline-none"
+        ></textarea>
+
+        <div className="text-center mt-6">
           <input
             type="submit"
             value="Send Message"
-            id="btn_send"
-            className="text-white md:text-[1.5rem] xl:text-[1rem] 2xl:text-[1.5rem] md:py-6 md:px-20 lg:py-[3rem] lg:px-[7rem] mt-5 rounded-full xl:py-4 xl:px-10 py-5 px-5 border-2 border-textcolor
-               shadow-[0px_0px_8px_2px_rgba(22,90,95,0.5),0px_0px_15px_4px_rgba(22,90,95,0.3)] 
-               bg-textcolor hover:text-bgcolor duration-500 cursor-pointer hover:scale-110 active:scale-100"
+            className="text-white text-lg md:text-xl py-4 px-10 rounded-full border-2 border-textcolor
+              shadow-[0px_0px_8px_2px_rgba(22,90,95,0.5),0px_0px_15px_4px_rgba(22,90,95,0.3)]
+              bg-textcolor hover:text-bgcolor duration-500 cursor-pointer hover:scale-110 active:scale-100"
           />
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
 
-export default contact;
+export default Contact;
