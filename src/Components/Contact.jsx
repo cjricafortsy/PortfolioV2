@@ -18,7 +18,7 @@ const Contact = () => {
       )
       .then(
         () => {
-          toast.success("Message sent successfully! Please check your email for confirmation.");
+          toast.success("Message sent successfully!");
           form.current.reset();
         },
         (error) => {
@@ -40,14 +40,14 @@ const Contact = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input
             type="text"
-            name="name"
+            name="from_name"
             placeholder="Full Name"
             required
             className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg focus:outline-none"
           />
           <input
             type="email"
-            name="email"
+            name="from_email"
             placeholder="Email Address"
             required
             className="w-full p-6 text-xl bg-[#323946] text-white rounded-lg focus:outline-none"
